@@ -1,9 +1,10 @@
-package appendr
+package appenders
 
 import (
 	"encoding/json"
 	"github.com/nats-io/nats.go"
-	"ideatip.dev.appendr"
+	"go.ideatip.dev.appendr/models"
+	"go.ideatip.dev.appendr/utils"
 	"time"
 )
 
@@ -16,12 +17,12 @@ func NewNATSAppender(conn *nats.Conn, subject string) *NATSAppender {
 	return &NATSAppender{conn: conn, subject: subject}
 }
 
-func (n *NATSAppender) Append(level appendr.LogLevel, message string, fields []appendr.Field) {
+func (n *NATSAppender) Append(level models.LogLevel, message string, fields []models.Field) {
 	logEntry := map[string]interface{}{
 		"level":     level.String(),
 		"message":   message,
 		"timestamp": time.Now().UTC(),
-		"fields":    appendr.FieldsToMap(fields),
+		"fields":    utils.FieldsToMap(fields),
 	}
 	jsonData, _ := json.Marshal(logEntry)
 	err := n.conn.Publish(n.subject, jsonData)

@@ -1,20 +1,18 @@
-package appendr
+package appenders
 
 import (
 	"fmt"
+	"go.ideatip.dev.appendr/models"
+	"go.ideatip.dev.appendr/utils"
 	"os"
 	"sync"
 	"time"
 )
 
-type Appender interface {
-	Append(level LogLevel, message string, fields []Field)
-}
-
 type ConsoleAppender struct{}
 
-func (c *ConsoleAppender) Append(level LogLevel, message string, fields []Field) {
-	fmt.Printf("[%s] %s %s\n", level, message, fieldsToString(fields))
+func (c *ConsoleAppender) Append(level models.LogLevel, message string, fields []models.Field) {
+	fmt.Printf("[%s] %s %s\n", level, message, utils.FieldsToString(fields))
 }
 
 type FileAppender struct {
@@ -46,7 +44,7 @@ func NewFileAppender(filename string, maxSize int64) (*FileAppender, error) {
 	}, nil
 }
 
-func (fa *FileAppender) Append(level LogLevel, message string, fields []Field) {
+func (fa *FileAppender) Append(level models.LogLevel, message string, fields []models.Field) {
 	fa.mu.Lock()
 	defer fa.mu.Unlock()
 
@@ -54,7 +52,7 @@ func (fa *FileAppender) Append(level LogLevel, message string, fields []Field) {
 		time.Now().Format(time.RFC3339),
 		level,
 		message,
-		fieldsToString(fields))
+		utils.FieldsToString(fields))
 
 	entrySize := int64(len(logEntry))
 

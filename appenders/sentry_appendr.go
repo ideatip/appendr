@@ -1,8 +1,9 @@
-package appendr
+package appenders
 
 import (
 	"github.com/getsentry/sentry-go"
-	"ideatip.dev.appendr"
+	"go.ideatip.dev.appendr/models"
+	"go.ideatip.dev.appendr/utils"
 	"log"
 	"time"
 )
@@ -13,7 +14,7 @@ func NewSentryAppendr() *SentryAppendr {
 	return &SentryAppendr{}
 }
 
-func (s *SentryAppendr) Append(level appendr.LogLevel, message string, fields []appendr.Field) {
+func (s *SentryAppendr) Append(level models.LogLevel, message string, fields []models.Field) {
 	if sentry.CurrentHub().Client() == nil {
 		log.Fatal("sentry not connected")
 	}
@@ -21,22 +22,22 @@ func (s *SentryAppendr) Append(level appendr.LogLevel, message string, fields []
 	sentry.CaptureEvent(&sentry.Event{
 		Message:   message,
 		Level:     appendrLevelToSentryLevel(level),
-		Extra:     appendr.FieldsToMap(fields),
+		Extra:     utils.FieldsToMap(fields),
 		Timestamp: time.Now().UTC(),
 	})
 }
 
-func appendrLevelToSentryLevel(level appendr.LogLevel) sentry.Level {
+func appendrLevelToSentryLevel(level models.LogLevel) sentry.Level {
 	switch level {
-	case appendr.DEBUG:
+	case models.DEBUG:
 		return sentry.LevelDebug
-	case appendr.INFO:
+	case models.INFO:
 		return sentry.LevelInfo
-	case appendr.WARN:
+	case models.WARN:
 		return sentry.LevelWarning
-	case appendr.ERROR:
+	case models.ERROR:
 		return sentry.LevelError
-	case appendr.FATAL:
+	case models.FATAL:
 		return sentry.LevelFatal
 	}
 
