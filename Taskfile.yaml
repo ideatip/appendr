@@ -1,0 +1,10 @@
+version: '3'
+
+tasks:
+  build_go_mod_server:
+    desc: "Builds the go mod server website docker image and push it to container registry"
+    cmds:
+      - cd modules-site && docker build -t forgejo.ideatip.dev/deploy/appendr-go-mod-site:{{.TAG}} .
+      - docker tag forgejo.ideatip.dev/deploy/appendr-go-mod-site:{{.TAG}} forgejo.ideatip.dev/deploy/appendr-go-mod-site:latest
+      - docker push forgejo.ideatip.dev/deploy/appendr-go-mod-site:{{.TAG}}
+      - docker push forgejo.ideatip.dev/deploy/appendr-go-mod-site:latest
