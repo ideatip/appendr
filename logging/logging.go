@@ -1,7 +1,7 @@
 package logging
 
 import (
-	"go.ideatip.dev.appendr/models"
+	"go.ideatip.dev/appendr/models"
 	"sync"
 )
 

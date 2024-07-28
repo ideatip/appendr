@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/nats-io/nats.go"
-	"go.ideatip.dev.appendr/appenders"
-	"go.ideatip.dev.appendr/logging"
-	"go.ideatip.dev.appendr/models"
+	"go.ideatip.dev/appendr/appenders"
+	"go.ideatip.dev/appendr/logging"
+	"go.ideatip.dev/appendr/models"
 )
 
 func main() {

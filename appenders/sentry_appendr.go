@@ -2,8 +2,8 @@ package appenders
 
 import (
 	"github.com/getsentry/sentry-go"
-	"go.ideatip.dev.appendr/models"
-	"go.ideatip.dev.appendr/utils"
+	"go.ideatip.dev/appendr/models"
+	"go.ideatip.dev/appendr/utils"
 	"log"
 	"time"
 )

@@ -2,11 +2,11 @@ module go.ideatip.dev.appendr/example
 
 go 1.22.0
 
-replace go.ideatip.dev.appendr => ../
+replace go.ideatip.dev/appendr => ../
 
 require (
 	github.com/nats-io/nats.go v1.36.0
-	go.ideatip.dev.appendr v0.0.0-00010101000000-000000000000
+	go.ideatip.dev/appendr v0.0.0-00010101000000-000000000000
 )
 
 require (

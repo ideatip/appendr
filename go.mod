@@ -1,4 +1,4 @@
-module go.ideatip.dev.appendr
+module go.ideatip.dev/appendr
 
 go 1.22
 

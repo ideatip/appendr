@@ -2,8 +2,8 @@ package appenders
 
 import (
 	"fmt"
-	"go.ideatip.dev.appendr/models"
-	"go.ideatip.dev.appendr/utils"
+	"go.ideatip.dev/appendr/models"
+	"go.ideatip.dev/appendr/utils"
 	"os"
 	"sync"
 	"time"

@@ -3,8 +3,8 @@ package appenders
 import (
 	"encoding/json"
 	"github.com/nats-io/nats.go"
-	"go.ideatip.dev.appendr/models"
-	"go.ideatip.dev.appendr/utils"
+	"go.ideatip.dev/appendr/models"
+	"go.ideatip.dev/appendr/utils"
 	"time"
 )
 

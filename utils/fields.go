@@ -2,7 +2,7 @@ package utils
 
 import (
 	"fmt"
-	"go.ideatip.dev.appendr/models"
+	"go.ideatip.dev/appendr/models"
 )
 
 func FieldsToString(fields []models.Field) string {
