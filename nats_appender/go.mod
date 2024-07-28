@@ -1,4 +1,4 @@
-module ideatip.dev.appendr/nats
+module go.ideatip.dev.appendr/nats
 
 go 1.22.0
 

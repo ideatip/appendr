@@ -1,4 +1,4 @@
-module ideatip.dev.appendr/example
+module go.ideatip.dev.appendr/example
 
 go 1.22.0
 

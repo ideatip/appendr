@@ -1,4 +1,4 @@
-module ideatip.dev.appendr/sentry
+module go.ideatip.dev.appendr/sentry
 
 go 1.22.3
 
