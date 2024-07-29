@@ -1,6 +1,7 @@
 package appenders
 
 import (
+	"errors"
 	"github.com/getsentry/sentry-go"
 	"go.ideatip.dev/appendr/models"
 	"go.ideatip.dev/appendr/utils"
@@ -19,12 +20,16 @@ func (s *SentryAppendr) Append(level models.LogLevel, message string, fields []m
 		log.Fatal("sentry not connected")
 	}
 
-	sentry.CaptureEvent(&sentry.Event{
-		Message:   message,
-		Level:     appendrLevelToSentryLevel(level),
-		Extra:     utils.FieldsToMap(fields),
-		Timestamp: time.Now().UTC(),
-	})
+	if level == models.INFO {
+		sentry.CaptureEvent(&sentry.Event{
+			Message:   message,
+			Level:     appendrLevelToSentryLevel(level),
+			Extra:     utils.FieldsToMap(fields),
+			Timestamp: time.Now().UTC(),
+		})
+	} else {
+		sentry.CaptureException(errors.New(message))
+	}
 }
 
 func appendrLevelToSentryLevel(level models.LogLevel) sentry.Level {
