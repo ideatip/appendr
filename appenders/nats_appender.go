@@ -2,6 +2,7 @@ package appenders
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/nats-io/nats.go"
 	"go.ideatip.dev/appendr/models"
 	"go.ideatip.dev/appendr/utils"
@@ -25,8 +26,9 @@ func (n *NATSAppender) Append(level models.LogLevel, message string, fields []mo
 		"fields":    utils.FieldsToMap(fields),
 	}
 	jsonData, _ := json.Marshal(logEntry)
-	err := n.conn.Publish(n.subject, jsonData)
+	err := n.conn.Publish(fmt.Sprintf("%s.%s", n.subject, level.String()), jsonData)
 	if err != nil {
+		fmt.Printf("error trying to pulish to nats %s: %s \n", n.subject, err)
 		return
 	}
 }
